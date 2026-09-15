@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SignalFrame } from "./SignalFrame";
 import { useProgress } from "./ProgressProvider";
@@ -17,8 +18,11 @@ const STEPS = [
 ] as const;
 
 export function OpeningPatmos() {
-  const { addJournal, unlockTool, unlockRule, discoverSymbol, completeExpedition } = useProgress();
-  const [step, setStep] = useState(0);
+  const router = useRouter();
+  const { progress, addJournal, unlockTool, unlockRule, discoverSymbol, completeExpedition } =
+    useProgress();
+  const alreadyDone = progress.completed.includes("interpreters-chamber");
+  const [step, setStep] = useState(alreadyDone ? STEPS.length - 1 : 0);
   const [note, setNote] = useState("");
   const [observed, setObserved] = useState<string | null>(null);
   const [lamp, setLamp] = useState<string | null>(null);
@@ -176,10 +180,7 @@ export function OpeningPatmos() {
           body="The lampstands are churches. The Son of Man walks among them. The expedition is not a hunt for villains. It is a walk through a war over worship, beginning with real congregations on a real coast."
           extra="SDA / historicist reading will later trace those churches through history. That claim is not required yet. First: go to them."
           action="Look at the map"
-          onAction={() => {
-            completeExpedition("interpreters-chamber");
-            next();
-          }}
+          onAction={next}
         />
       ) : null}
 
@@ -188,14 +189,18 @@ export function OpeningPatmos() {
           kicker="A route appears"
           body="Patmos is no longer the whole world. A line runs east toward seven ruined cities. Ephesus is first."
         >
-          <Link
-            href="/expedition/seven-cities"
+          <button
+            type="button"
+            onClick={() => {
+              completeExpedition("interpreters-chamber");
+              router.push("/expedition/seven-cities");
+            }}
             className="mt-6 inline-flex rounded-full bg-gold px-8 py-3 text-xs uppercase tracking-[0.28em] text-black"
           >
             Continue to Ephesus
-          </Link>
-          <Link href="/map" className="mt-4 block text-sm text-signal">
-            Open the map
+          </button>
+          <Link href="/map" className="mt-4 block text-sm text-parchment/60 hover:text-signal">
+            First look at the chart
           </Link>
         </Scene>
       ) : null}

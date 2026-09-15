@@ -2,14 +2,23 @@
 
 import { useState } from "react";
 import { EXPEDITIONS } from "@/content/expeditions";
+import { MAP_LAYOUT } from "@/content/map-layout";
+import { nextOpenId } from "@/lib/progress";
 import { SignalFrame } from "./SignalFrame";
 import { useProgress } from "./ProgressProvider";
 
 export function JournalDesk() {
   const { progress, addJournal } = useProgress();
+  const knownIds = new Set([
+    EXPEDITIONS[0].id,
+    nextOpenId(progress.completed),
+    ...progress.completed,
+    ...progress.journal.flatMap((entry) => (entry.expeditionId ? [entry.expeditionId] : [])),
+  ]);
+  const known = EXPEDITIONS.filter((item) => knownIds.has(item.id));
   const [body, setBody] = useState("");
   const [prompt, setPrompt] = useState("What I think this means");
-  const [expeditionId, setExpeditionId] = useState(EXPEDITIONS[0].id);
+  const [expeditionId, setExpeditionId] = useState(known[0]?.id ?? EXPEDITIONS[0].id);
 
   return (
     <div className="space-y-5">
@@ -24,9 +33,9 @@ export function JournalDesk() {
             onChange={(e) => setExpeditionId(e.target.value)}
             className="rounded-xl border border-white/15 bg-black/40 p-2 text-sm"
           >
-            {EXPEDITIONS.map((item) => (
+            {known.map((item) => (
               <option key={item.id} value={item.id}>
-                {item.title}
+                {MAP_LAYOUT[item.id]?.place ?? item.shortTitle}
               </option>
             ))}
           </select>
@@ -55,12 +64,17 @@ export function JournalDesk() {
         </button>
       </SignalFrame>
       <div className="space-y-3">
+        {progress.journal.length === 0 ? (
+          <p className="text-sm text-parchment/60">No pages yet. The first observation unlocks the habit.</p>
+        ) : null}
         {progress.journal.map((entry) => (
           <SignalFrame key={entry.id} className="p-4">
             <p className="text-[10px] uppercase tracking-[0.18em] text-signal">{entry.prompt}</p>
             <p className="mt-2 text-sm leading-6 text-parchment/85">{entry.body}</p>
             <p className="mt-2 text-[10px] text-white/40">
-              {entry.expeditionId} · {new Date(entry.createdAt).toLocaleString()}
+              {(entry.expeditionId ? MAP_LAYOUT[entry.expeditionId]?.place : "Field note") +
+                " · " +
+                new Date(entry.createdAt).toLocaleString()}
             </p>
           </SignalFrame>
         ))}

@@ -39,7 +39,7 @@ export function ExpeditionPlayer({ expedition }: { expedition: Expedition }) {
     [puzzle],
   );
 
-  if (expedition.id === "interpreters-chamber" && !done) {
+  if (expedition.id === "interpreters-chamber") {
     return <OpeningPatmos />;
   }
 

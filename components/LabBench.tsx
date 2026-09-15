@@ -22,8 +22,8 @@ export function LabBench() {
   return (
     <div className="space-y-5">
       <div>
-        <p className="neon-title text-[11px]">Prophecy lab</p>
-        <h1 className="mt-2 font-display text-3xl text-white">Score the path, not the guess.</h1>
+        <p className="text-[10px] uppercase tracking-[0.28em] text-gold">Prophecy lab</p>
+        <h1 className="mt-2 font-display text-3xl text-[#f7ecd4]">Build a case. Score the trail, not a lucky guess.</h1>
       </div>
       <div className="flex flex-wrap gap-2">
         {LAB_CASES.map((item) => (

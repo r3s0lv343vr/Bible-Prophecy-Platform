@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { EXPEDITIONS } from "@/content/expeditions";
+import { MAP_LAYOUT } from "@/content/map-layout";
 import { PRIMARY_NAV, RANKS } from "@/lib/nav";
 import { TOOLS } from "@/lib/tools";
 import { nextOpenId } from "@/lib/progress";
@@ -94,7 +95,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <button
               type="button"
               onClick={() => setKitOpen(false)}
-              className="mt-6 text-xs uppercase tracking-[0.18em] text-parchment/50"
+              className="mt-4 block text-xs uppercase tracking-[0.18em] text-parchment/50"
             >
               Close
             </button>
@@ -127,9 +128,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 }
 
 function MAP_PLACE(id: string) {
-  if (id === "interpreters-chamber") return "Patmos";
-  if (id === "seven-cities") return "the seven cities";
-  return EXPEDITIONS.find((e) => e.id === id)?.shortTitle ?? "the next shore";
+  return MAP_LAYOUT[id]?.place ?? EXPEDITIONS.find((e) => e.id === id)?.shortTitle ?? "the next shore";
 }
 
 function ResetControl() {
@@ -138,7 +137,7 @@ function ResetControl() {
     <button
       type="button"
       onClick={reset}
-      className="mt-8 text-[10px] uppercase tracking-[0.16em] text-white/35 hover:text-danger"
+      className="mt-8 block text-[10px] uppercase tracking-[0.16em] text-white/35 hover:text-danger"
     >
       Reset local progress
     </button>

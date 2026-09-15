@@ -20,7 +20,7 @@ export const LAB_CASES: LabCase[] = [
     dimensions: [
       {
         id: "context",
-        label: "Context",
+        label: "TEXT · who first heard this",
         options: [
           { id: "c1", label: "Ask what empire Daniel's hearers already lived under", score: 2 },
           { id: "c2", label: "Start with this week's headlines", score: 0 },
@@ -29,7 +29,7 @@ export const LAB_CASES: LabCase[] = [
       },
       {
         id: "symbols",
-        label: "Symbols",
+        label: "SYMBOL",
         options: [
           { id: "s1", label: "Let Daniel 7:17,23 define beasts as kings/kingdoms", score: 2 },
           { id: "s2", label: "Treat beasts as weather", score: 0 },
@@ -38,7 +38,7 @@ export const LAB_CASES: LabCase[] = [
       },
       {
         id: "cross",
-        label: "Cross-reference",
+        label: "CROSS-REFERENCE",
         options: [
           { id: "x1", label: "Carry the little horn into Revelation 13's mouth and war", score: 2 },
           { id: "x2", label: "Refuse to let Revelation near Daniel", score: 0 },
@@ -47,7 +47,7 @@ export const LAB_CASES: LabCase[] = [
       },
       {
         id: "conclusion",
-        label: "Conclusion quality",
+        label: "CONCLUSION",
         options: [
           {
             id: "n1",
@@ -69,7 +69,7 @@ export const LAB_CASES: LabCase[] = [
     dimensions: [
       {
         id: "text",
-        label: "Text",
+        label: "TEXT",
         options: [
           { id: "t1", label: "Notice the creation formula matching Exodus 20:11", score: 2 },
           { id: "t2", label: "Ignore 'worship' and hunt a date only", score: 0 },
@@ -77,7 +77,7 @@ export const LAB_CASES: LabCase[] = [
       },
       {
         id: "history",
-        label: "History",
+        label: "HISTORY",
         options: [
           { id: "h1", label: "Ask what 'hour of judgment' meant to Advent awakening readers — as history, not as proof by itself", score: 2 },
           { id: "h2", label: "Assume the verse cannot have meant anything until this decade", score: 0 },
@@ -85,7 +85,7 @@ export const LAB_CASES: LabCase[] = [
       },
       {
         id: "school",
-        label: "School",
+        label: "CONCLUSION",
         options: [
           { id: "k1", label: "Label the SDA Creator-Sabbath synthesis as historicist interpretation", score: 2 },
           { id: "k2", label: "Hide that other Christians read the verse as general praise", score: 0 },

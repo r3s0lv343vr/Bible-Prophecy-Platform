@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { EXPEDITIONS } from "@/content/expeditions";
+import { MAP_LAYOUT } from "@/content/map-layout";
 import { DECODER_STEPS } from "@/lib/nav";
+import { nextOpenId } from "@/lib/progress";
 import { SignalFrame } from "./SignalFrame";
 import { useProgress } from "./ProgressProvider";
 
@@ -38,13 +40,16 @@ export function DecoderStudio() {
         onChange={(e) => setExpeditionId(e.target.value)}
         className="rounded-xl border border-white/15 bg-black/50 px-3 py-2 text-sm"
       >
-        {EXPEDITIONS.filter((item) => progress.completed.includes(item.id) || item.id === EXPEDITIONS[0].id).map(
-          (item) => (
+        {EXPEDITIONS.filter(
+          (item) =>
+            progress.completed.includes(item.id) ||
+            item.id === EXPEDITIONS[0].id ||
+            item.id === nextOpenId(progress.completed),
+        ).map((item) => (
             <option key={item.id} value={item.id}>
-              {item.title}
+              {MAP_LAYOUT[item.id]?.place ?? item.shortTitle}
             </option>
-          ),
-        )}
+          ))}
       </select>
       <div className="grid gap-4 lg:grid-cols-2">
         {steps.map((step) => (
