@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+:root {
+  --void: #03040c;
+  --void-2: #070b18;
+  --signal: #20f6ff;
+  --signal-dim: #0a6e78;
+  --plasma: #ff3ad7;
+  --gold: #f4c84a;
+  --parchment: #ead7b0;
+  --danger: #ff4d6d;
+  --ok: #5dffb2;
+}
+
+@theme inline {
+  --color-void: var(--void);
+  --color-signal: var(--signal);
+  --color-plasma: var(--plasma);
+  --color-gold: var(--gold);
+  --color-parchment: var(--parchment);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  background: var(--void);
+  color: #d7f7ff;
+}
+
+body {
+  font-family: var(--font-body), serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--signal) 40%, transparent);
+  color: white;
+}
+
+.cosmic-bg {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(32, 246, 255, 0.12), transparent 55%),
+    radial-gradient(900px 500px at 110% 10%, rgba(255, 58, 215, 0.1), transparent 50%),
+    radial-gradient(800px 500px at 50% 120%, rgba(244, 200, 74, 0.08), transparent 45%),
+    linear-gradient(180deg, #03040c 0%, #070b18 50%, #020309 100%);
+}
+
+.starfield {
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 80px 70px, rgba(32, 246, 255, 0.8), transparent),
+    radial-gradient(1.5px 1.5px at 160px 40px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 220px 120px, rgba(255, 58, 215, 0.7), transparent),
+    radial-gradient(1px 1px at 300px 90px, rgba(244, 200, 74, 0.6), transparent);
+  background-size: 340px 180px;
+}
+
+.scanlines::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.12) 3px
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.35;
+}
+
+.signal-border {
+  border: 1px solid color-mix(in oklab, var(--signal) 45%, transparent);
+  box-shadow:
+    0 0 0 1px rgba(32, 246, 255, 0.08) inset,
+    0 0 24px rgba(32, 246, 255, 0.08),
+    0 0 48px rgba(255, 58, 215, 0.05);
+  background: linear-gradient(180deg, rgba(8, 16, 32, 0.92), rgba(4, 8, 18, 0.88));
+}
+
+.neon-title {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--signal);
+  text-shadow:
+    0 0 8px rgba(32, 246, 255, 0.8),
+    0 0 24px rgba(32, 246, 255, 0.35);
+}
+
+.pulse-dot {
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 48s linear infinite;
+}
+
+.arc-ruins {
+  --accent: #c4a574;
+}
+.arc-heaven {
+  --accent: #7ee7ff;
+}
+.arc-conflict {
+  --accent: #ff4d6d;
+}
+.arc-gold {
+  --accent: #f4c84a;
+}
+.arc-babylon {
+  --accent: #d46bff;
+}
+.arc-cinematic {
+  --accent: #fff4c2;
+}
+.arc-judicial {
+  --accent: #b9c4d4;
+}
+.arc-luminous {
+  --accent: #e8fff7;
+}
+
+.kit-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.kit-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--signal) 40%, #111);
+  border-radius: 99px;
+}
+
+.leaflet-tile-pane {
+  filter: invert(1) hue-rotate(190deg) saturate(0.55) brightness(0.9) contrast(1.05);
+}
+
+.leaflet-container {
+  background: #050814;
+  font-family: var(--font-body), serif;
+}
+
+.relic-pin {
+  background: transparent;
+  border: 0;
+}
+
+input,
+textarea,
+button,
+select {
+  font: inherit;
+}
