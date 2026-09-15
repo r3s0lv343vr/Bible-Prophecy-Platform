@@ -1,0 +1,16 @@
+{
+  "name": "Revelation Expedition",
+  "short_name": "Expedition",
+  "description": "An interactive historicist investigation through Revelation.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#03040c",
+  "theme_color": "#03040c",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
