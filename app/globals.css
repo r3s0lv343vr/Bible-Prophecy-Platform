@@ -163,6 +163,10 @@ a {
   border-radius: 99px;
 }
 
+.leaflet-tile-pane {
+  filter: invert(1) hue-rotate(190deg) saturate(0.55) brightness(0.9) contrast(1.05);
+}
+
 .leaflet-container {
   background: #050814;
   font-family: var(--font-body), serif;

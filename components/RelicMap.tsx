@@ -20,8 +20,9 @@ export function RelicMap({ sites, selected }: { sites: GeoSite[]; selected?: str
         [focus?.lat ?? 36.5, focus?.lng ?? 28],
         selected ? 7 : 5,
       );
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-        attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+        maxZoom: 18,
       }).addTo(map);
       sites.forEach((site) => {
         L.circleMarker([site.lat, site.lng], {

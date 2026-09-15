@@ -21,7 +21,7 @@ export function ProphecyMap() {
         </p>
       </div>
 
-      <div className="signal-border relative min-h-[640px] overflow-hidden rounded-3xl p-3 md:p-6">
+      <div className="signal-border relative min-h-[920px] overflow-hidden rounded-3xl p-3 md:p-6">
         <svg className="absolute inset-0 h-full w-full opacity-70" viewBox="0 0 100 100" preserveAspectRatio="none">
           <defs>
             <linearGradient id="route" x1="0" x2="1">
@@ -38,7 +38,7 @@ export function ProphecyMap() {
             points={EXPEDITIONS.map((e) => `${e.map.x},${e.map.y}`).join(" ")}
           />
         </svg>
-        <div className="relative min-h-[600px]">
+        <div className="relative min-h-[880px]">
           {EXPEDITIONS.map((item) => {
             const done = progress.completed.includes(item.id);
             const open = canAccess(item.id, item.prerequisites, progress.completed, item.signature);
@@ -46,7 +46,7 @@ export function ProphecyMap() {
               <Link
                 key={item.id}
                 href={open ? `/expedition/${item.id}` : "#"}
-                className={`absolute w-40 -translate-x-1/2 -translate-y-1/2 rounded-2xl border px-3 py-2 text-left transition ${
+                className={`absolute w-36 -translate-x-1/2 -translate-y-1/2 rounded-2xl border px-2.5 py-1.5 text-left transition ${
                   done
                     ? "border-gold/50 bg-gold/10"
                     : open

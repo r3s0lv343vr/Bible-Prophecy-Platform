@@ -81,7 +81,7 @@ async function wikiSites(siteId?: string): Promise<Relic[]> {
     chosen.map(async (site) => {
       try {
         const data = await safeJson(
-          `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(site.searchTerms[0])}&prop=pageimages|extracts|info&inprop=url&pithumbsize=800&exintro=1&explaintext=1&format=json&origin=*`,
+          `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(site.name)}&prop=pageimages|extracts|info&inprop=url&pithumbsize=800&exintro=1&explaintext=1&format=json`,
         );
         const page = Object.values(data.query?.pages ?? {})[0] as {
           title?: string;
