@@ -14,8 +14,8 @@ export function JournalDesk() {
   return (
     <div className="space-y-5">
       <div>
-        <p className="neon-title text-[11px]">Expedition journal</p>
-        <h1 className="mt-2 font-display text-3xl text-white">Field notes stay with you.</h1>
+        <p className="text-[10px] uppercase tracking-[0.28em] text-gold">Field journal</p>
+        <h1 className="mt-2 font-display text-3xl text-[#f7ecd4]">What you saw. What you still cannot explain.</h1>
       </div>
       <SignalFrame className="p-5">
         <div className="grid gap-3 md:grid-cols-2">

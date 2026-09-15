@@ -1,28 +1,17 @@
-export const PRODUCT_LINE = "Revelation Expedition";
-export const PRODUCT_SIGNAL = "UNNAMED TRANSMISSION";
-export const TAGLINE = "See the symbols. Trace the history. Understand the prophecy.";
+export const PRODUCT_LINE = "The Revelation Expedition";
+export const TAGLINE =
+  "An ancient prophecy. A trail through history. A mystery still unfolding.";
 
 export type NavItem = {
   href: string;
   label: string;
   hint: string;
-  group: "world" | "kit" | "field";
 };
 
-/** Central nav config so the shell can evolve without rewriting pages. */
-export const NAV_ITEMS: NavItem[] = [
-  { href: "/", label: "Table", hint: "Expedition desk", group: "world" },
-  { href: "/map", label: "Map", hint: "Prophecy route", group: "world" },
-  { href: "/codex", label: "Codex", hint: "Symbol library", group: "kit" },
-  { href: "/decoder", label: "Decoder", hint: "Interpretation method", group: "kit" },
-  { href: "/evidence", label: "Evidence", hint: "Connection board", group: "kit" },
-  { href: "/journal", label: "Journal", hint: "Field notes", group: "kit" },
-  { href: "/timeline", label: "Timeline", hint: "Chronology", group: "kit" },
-  { href: "/lab", label: "Lab", hint: "Reasoning cases", group: "kit" },
-  { href: "/war-room", label: "War Room", hint: "Great Controversy", group: "world" },
-  { href: "/relics", label: "Relics", hint: "Sites and artifacts", group: "field" },
-  { href: "/news", label: "Signal", hint: "Real-world events", group: "field" },
-  { href: "/investigations", label: "Briefs", hint: "Public investigations", group: "field" },
+export const PRIMARY_NAV: NavItem[] = [
+  { href: "/", label: "Expedition", hint: "Continue the trail" },
+  { href: "/journal", label: "Journal", hint: "Field notebook" },
+  { href: "/map", label: "Map", hint: "Known country" },
 ];
 
 export const RANKS: Record<
@@ -32,90 +21,89 @@ export const RANKS: Record<
   explorer: {
     label: "Explorer",
     threshold: 0,
-    line: "You have entered the archive. Observation is the first discipline.",
+    line: "You have set foot on Patmos. Watch first. Write second.",
   },
   investigator: {
     label: "Investigator",
     threshold: 2,
-    line: "Evidence is beginning to speak. Keep Scripture first.",
+    line: "The evidence is starting to speak. Keep Scripture first.",
   },
   pathfinder: {
     label: "Pathfinder",
     threshold: 5,
-    line: "You can trace a route through symbols, history, and worship.",
+    line: "You can follow a symbol through history without losing the story.",
   },
   interpreter: {
     label: "Interpreter",
     threshold: 10,
-    line: "Method before conclusion. Recapitulation is becoming visible.",
+    line: "Later visions are lighting up earlier ones.",
   },
   witness: {
     label: "Witness",
     threshold: 18,
-    line: "The story ends in restoration. Carry the invitation.",
+    line: "The trail ends in restoration. Carry the invitation.",
   },
 };
-
-export const LEARNING_LOOP = [
-  "Observe",
-  "Investigate",
-  "Interpret",
-  "Test",
-  "Connect",
-  "Decide",
-  "Unlock",
-] as const;
 
 export const DECODER_STEPS: {
   id: import("./types").DecoderStepId;
   label: string;
   prompt: string;
+  student: string;
 }[] = [
   {
+    id: "crossrefs",
+    label: "Scripture reads Scripture",
+    prompt: "Where else does the Bible already name this image?",
+    student: "If the book explains its own symbol, start there.",
+  },
+  {
     id: "context",
-    label: "Historical setting",
-    prompt: "Who first heard this, and what world were they standing in?",
-  },
-  {
-    id: "structure",
-    label: "Literary structure",
-    prompt: "How is the passage built? Parallel? Recapitulation? Sequence?",
-  },
-  {
-    id: "grammar",
-    label: "Words and flow",
-    prompt: "What is actually said, before any chart is drawn?",
+    label: "Who first heard this?",
+    prompt: "What world was John standing in?",
+    student: "Begin with the first hearers, not tonight’s headlines.",
   },
   {
     id: "symbolic",
-    label: "Literal or symbolic",
-    prompt: "Which images are signs, and which are the things signified?",
+    label: "Sign or the thing itself?",
+    prompt: "Which images are signs, and which are what they point to?",
+    student: "Do not replace a Bible definition with a gadget.",
   },
   {
-    id: "crossrefs",
-    label: "Scripture interprets Scripture",
-    prompt: "Where else does the Bible define these images?",
+    id: "structure",
+    label: "How is it built?",
+    prompt: "Sequence, parallel, or a story told again with more light?",
+    student: "Revelation often retells the same war from a new angle.",
+  },
+  {
+    id: "grammar",
+    label: "What is actually said?",
+    prompt: "Read the sentences before drawing a chart.",
+    student: "Watch the verbs: worship, witness, overcome.",
   },
   {
     id: "classification",
-    label: "Kind of prophecy",
-    prompt: "Classic, apocalyptic, conditional, or mixed?",
+    label: "What kind of prophecy?",
+    prompt: "Classic promise, apocalyptic vision, or mixed?",
+    student: "Apocalyptic language is thick with symbols on purpose.",
   },
   {
     id: "christ",
-    label: "Christ and the church",
-    prompt: "How does this pass through the cross and the people of God?",
+    label: "Where is the Lamb?",
+    prompt: "How does this pass through Jesus and his people?",
+    student: "Find the Lamb before you hunt the beast.",
   },
   {
     id: "eschaton",
-    label: "Last-day fulfilment",
-    prompt: "What still leans toward the end of the conflict?",
+    label: "What still leans forward?",
+    prompt: "What remains for the last crisis and the new world?",
+    student: "Leave room for the end without forcing every verse into this week.",
   },
 ];
 
 export const VIEW_LABELS = {
-  text: "Biblical text",
-  history: "Historical trail",
+  text: "The text",
+  history: "The historical trail",
   sda: "SDA / historicist reading",
-  alternative: "Other Christian readings",
+  alternative: "Four ways Christians have tried to solve it",
 } as const;

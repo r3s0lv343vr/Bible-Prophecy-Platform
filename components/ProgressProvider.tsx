@@ -11,7 +11,8 @@ import {
   subscribeProgress,
   writeProgress,
 } from "@/lib/progress";
-import type { JournalEntry, ProgressState, Rank } from "@/lib/types";
+import type { JournalEntry, ProgressState, Rank, ToolId } from "@/lib/types";
+import { EXPEDITION_TOOL_UNLOCKS } from "@/lib/tools";
 
 type ProgressContextValue = {
   progress: ProgressState;
@@ -22,7 +23,9 @@ type ProgressContextValue = {
   saveDecoder: (expeditionId: string, step: string, value: string) => void;
   addLink: (from: string, to: string, note: string) => void;
   saveLabScore: (id: string, score: number) => void;
-  dismissIntro: () => void;
+  unlockTool: (id: ToolId) => void;
+  unlockRule: (id: string) => void;
+  discoverSymbol: (id: string) => void;
   reset: () => void;
 };
 
@@ -54,6 +57,12 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         artifacts,
         symbols,
         lastExpeditionId: id,
+        unlockedTools: Array.from(
+          new Set([
+            ...(prev.unlockedTools ?? []),
+            ...(EXPEDITION_TOOL_UNLOCKS[id] ?? []),
+          ]),
+        ),
       };
     });
   }, []);
@@ -108,8 +117,27 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     }));
   }, []);
 
-  const dismissIntro = useCallback(() => {
-    writeProgress((prev) => ({ ...prev, seenIntro: true }));
+  const unlockTool = useCallback((id: ToolId) => {
+    writeProgress((prev) => ({
+      ...prev,
+      unlockedTools: prev.unlockedTools?.includes(id)
+        ? prev.unlockedTools
+        : [...(prev.unlockedTools ?? []), id],
+    }));
+  }, []);
+
+  const unlockRule = useCallback((id: string) => {
+    writeProgress((prev) => ({
+      ...prev,
+      decoderRules: prev.decoderRules?.includes(id) ? prev.decoderRules : [...(prev.decoderRules ?? []), id],
+    }));
+  }, []);
+
+  const discoverSymbol = useCallback((id: string) => {
+    writeProgress((prev) => ({
+      ...prev,
+      symbols: prev.symbols.includes(id) ? prev.symbols : [...prev.symbols, id],
+    }));
   }, []);
 
   const reset = useCallback(() => {
@@ -128,7 +156,9 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
       saveDecoder,
       addLink,
       saveLabScore,
-      dismissIntro,
+      unlockTool,
+      unlockRule,
+      discoverSymbol,
       reset,
     }),
     [
@@ -140,7 +170,9 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
       saveDecoder,
       addLink,
       saveLabScore,
-      dismissIntro,
+      unlockTool,
+      unlockRule,
+      discoverSymbol,
       reset,
     ],
   );

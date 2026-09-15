@@ -15,18 +15,17 @@ export const EXPEDITIONS: Expedition[] = [
   {
     id: "interpreters-chamber",
     sequence: 1,
-    title: "The Interpreter's Chamber",
-    shortTitle: "Decoder",
-    scriptureRange: "Method / Rev 1",
-    environment: "Training vault under a signal archive",
-    openingQuestion: "How do we responsibly decode predictive prophecy?",
+    title: "Patmos",
+    shortTitle: "Patmos",
+    scriptureRange: "Rev 1",
+    environment: "A rocky island in the Aegean",
+    openingQuestion: "What was John shown, and why was it sent?",
     visualArc: "ruins",
-    map: { x: 16, y: 88 },
+    map: { x: 16, y: 72 },
     geoIds: ["patmos"],
     prerequisites: [],
-    signature: true,
     overview:
-      "Before beasts and dates, recover the method: setting, structure, words, symbols, cross-references, prophecy type, and fulfilment in Christ, church, and end.",
+      "John is a prisoner on Patmos. The sea is loud. A revelation of Jesus Christ has been placed in your hands. Find out what it is before you try to solve the rest of the book.",
     scenes: [
       {
         id: "exile",
@@ -82,7 +81,7 @@ export const EXPEDITIONS: Expedition[] = [
         "The Decoder is a workflow, not an oracle. You recovered it by choosing method over shortcut.",
     },
     journalPrompt:
-      "Why does any of this matter for a life, not only for a chart? Write one honest sentence.",
+      "What did you notice in the first fragment that you did not expect?",
     artifact: {
       id: "decoder",
       title: "Prophecy Decoder",
@@ -100,7 +99,7 @@ export const EXPEDITIONS: Expedition[] = [
       summary: "Every Christian school claims to honour Scripture. The difference is time-map and symbol rules. Keep those rules visible.",
     },
     sdaConclusion:
-      "Revelation is a historicist panorama of the Great Controversy, centred on Jesus, unfolding from John's day to restoration.",
+      "SDA / historicist reading: Revelation is a panorama of the conflict between God and Satan from John’s day to restoration, centred on Jesus — not a newspaper decoder.",
     learningObjective: "State the decoding method before quoting an SDA conclusion.",
   },
   {
@@ -211,7 +210,7 @@ export const EXPEDITIONS: Expedition[] = [
     visualArc: "heaven",
     map: { x: 84, y: 88 },
     geoIds: [],
-    prerequisites: ["interpreters-chamber"],
+    prerequisites: ["seven-cities"],
     overview:
       "The ruined cities are not the last word. The next scene is worship: holy, holy, holy, and a slain Lamb standing.",
     scenes: [
@@ -444,8 +443,7 @@ export const EXPEDITIONS: Expedition[] = [
     visualArc: "conflict",
     map: { x: 16, y: 76 },
     geoIds: [],
-    prerequisites: ["interpreters-chamber"],
-    signature: true,
+    prerequisites: ["trumpet-trail"],
     overview:
       "A woman clothed with the sun, a dragon with seven heads, a child caught up to the throne, a war in heaven, a wilderness of 1260 days.",
     scenes: [
@@ -543,7 +541,6 @@ export const EXPEDITIONS: Expedition[] = [
     map: { x: 16, y: 64 },
     geoIds: ["rome"],
     prerequisites: ["woman-dragon"],
-    signature: true,
     overview:
       "Seven heads, ten horns, leopard-bear-lion features, blasphemy, war on the saints, 42 months. Daniel 7 is on the table.",
     scenes: [
@@ -630,7 +627,6 @@ export const EXPEDITIONS: Expedition[] = [
     map: { x: 50, y: 64 },
     geoIds: [],
     prerequisites: ["sea-beast"],
-    signature: true,
     overview:
       "Two horns like a lamb, speech like a dragon, fire from heaven, an image to the first beast. Appearance versus behaviour.",
     scenes: [
@@ -706,7 +702,6 @@ export const EXPEDITIONS: Expedition[] = [
     map: { x: 84, y: 64 },
     geoIds: [],
     prerequisites: ["earth-beast"],
-    signature: true,
     overview:
       "Forehead and hand. Buying and selling. 666. Place the gadget theories on the table, then open Deuteronomy.",
     scenes: [
@@ -796,7 +791,6 @@ export const EXPEDITIONS: Expedition[] = [
     map: { x: 84, y: 52 },
     geoIds: [],
     prerequisites: ["the-mark"],
-    signature: true,
     overview:
       "Three mid-heaven proclamations: everlasting gospel and Creator-judgment; Babylon's fall; the mark warning. This is the remnant's brief.",
     scenes: [

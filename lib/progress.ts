@@ -1,7 +1,7 @@
 import { RANKS } from "./nav";
 import type { ProgressState, Rank } from "./types";
 
-export const STORAGE_KEY = "revelation-expedition-progress-v1";
+export const STORAGE_KEY = "revelation-expedition-progress-v2";
 
 export const emptyProgress = (): ProgressState => ({
   completed: [],
@@ -9,9 +9,10 @@ export const emptyProgress = (): ProgressState => ({
   symbols: [],
   journal: [],
   decoder: [],
+  decoderRules: [],
   links: [],
   labScores: {},
-  seenIntro: false,
+  unlockedTools: [],
 });
 
 let snapshot: ProgressState = emptyProgress();
@@ -93,6 +94,59 @@ export function canAccess(
 ) {
   if (prerequisites.length === 0) return true;
   if (completed.includes(expeditionId)) return true;
-  if (signature && completed.includes("interpreters-chamber")) return true;
+  void signature;
   return prerequisites.every((id) => completed.includes(id));
+}
+
+const SEQUENCE = [
+  "interpreters-chamber",
+  "seven-cities",
+  "throne-room",
+  "sealed-scroll",
+  "trumpet-trail",
+  "woman-dragon",
+  "sea-beast",
+  "earth-beast",
+  "the-mark",
+  "three-messengers",
+  "sanctuary-vault",
+  "2300-day-code",
+  "worship-question",
+  "sabbath-seal",
+  "seven-vials",
+  "mystery-babylon",
+  "fall-of-babylon",
+  "return-of-the-king",
+  "thousand-years",
+  "final-case",
+  "death-of-death",
+  "lost-city",
+  "the-beginning",
+];
+
+export function nextOpenId(completed: string[]) {
+  return SEQUENCE.find((id) => !completed.includes(id)) ?? SEQUENCE[SEQUENCE.length - 1];
+}
+
+export function nodeVisibility(
+  sequence: number,
+  expeditionId: string,
+  prerequisites: string[],
+  completed: string[],
+  lastExpeditionId?: string,
+): "current" | "known" | "open" | "silhouette" | "fog" {
+  const open = canAccess(expeditionId, prerequisites, completed);
+  const done = completed.includes(expeditionId);
+  const frontier = completed.length
+    ? Math.max(...completed.map((id) => SEQUENCE.indexOf(id) + 1), 0)
+    : 0;
+  const currentId =
+    lastExpeditionId && !completed.includes(lastExpeditionId)
+      ? lastExpeditionId
+      : nextOpenId(completed);
+  if (expeditionId === currentId) return "current";
+  if (done) return "known";
+  if (open) return "open";
+  if (sequence <= frontier + 2) return "silhouette";
+  return "fog";
 }

@@ -172,9 +172,24 @@ a {
   font-family: var(--font-body), serif;
 }
 
-.relic-pin {
-  background: transparent;
-  border: 0;
+.parchment-bg {
+  background:
+    radial-gradient(900px 500px at 10% -10%, rgba(244, 200, 74, 0.08), transparent 50%),
+    radial-gradient(700px 400px at 100% 0%, rgba(32, 246, 255, 0.05), transparent 45%),
+    linear-gradient(180deg, #120d08 0%, #0a090c 55%, #07060a 100%);
+}
+
+.map-sheet {
+  background:
+    radial-gradient(circle at 20% 70%, rgba(42, 33, 22, 0.9), transparent 50%),
+    #0b1c22;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot,
+  .marquee-track {
+    animation: none;
+  }
 }
 
 input,

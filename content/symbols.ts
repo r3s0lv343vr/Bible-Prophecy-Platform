@@ -2,6 +2,17 @@ import type { SymbolEntry } from "@/lib/types";
 
 export const SYMBOLS: SymbolEntry[] = [
   {
+    id: "lampstand",
+    name: "Lampstands",
+    glyph: "🕎",
+    definition: "Seven golden lampstands stand in the first vision. The book names them before we invent a meaning.",
+    primaryPassages: ["Rev 1:12-13", "Rev 1:20"],
+    historicist:
+      "Revelation 1:20: the seven lampstands are the seven churches. First lesson: when Scripture explains its own image, keep that explanation.",
+    related: ["lamb"],
+    unlockAfter: ["interpreters-chamber"],
+  },
+  {
     id: "woman",
     name: "Woman",
     glyph: "☉",

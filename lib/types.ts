@@ -161,14 +161,25 @@ export type EvidenceLink = {
   note: string;
 };
 
+export type ToolId =
+  | "journal"
+  | "decoder"
+  | "codex"
+  | "evidence"
+  | "timeline"
+  | "lab"
+  | "war-room"
+  | "relics";
+
 export type ProgressState = {
   completed: string[];
   artifacts: string[];
   symbols: string[];
   journal: JournalEntry[];
   decoder: DecoderDraft[];
+  decoderRules: string[];
   links: EvidenceLink[];
   labScores: Record<string, number>;
-  seenIntro: boolean;
+  unlockedTools: ToolId[];
   lastExpeditionId?: string;
 };
